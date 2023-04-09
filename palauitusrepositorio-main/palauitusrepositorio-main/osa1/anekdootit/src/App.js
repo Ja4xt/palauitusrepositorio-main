@@ -1,5 +1,8 @@
 import { useState } from "react";
-
+/*
+JM fullstackopen 2023 
+anekdootit
+*/
 const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>{text}</button>
 );
