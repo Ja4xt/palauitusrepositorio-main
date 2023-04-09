@@ -1,3 +1,8 @@
+/*
+JM fullstackopen 2023 
+idk tbh
+*/
+
 const Header = (header) => {
   return <h1>{header.course}</h1>;
 };
