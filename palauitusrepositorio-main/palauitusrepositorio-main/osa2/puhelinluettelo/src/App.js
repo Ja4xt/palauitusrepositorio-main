@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import PersonForm from "./components/PersonForm";
 import PersonList from "./components/PersonList";
 //import Filter from "./components/Filter";
-
+/*
+JM fullstackopen 2023 
+puhelinluettelo
+*/
 const App = () => {
   const [persons, setPersons] = useState([
     { name: "Arto Hellas", number: "040-123456", id: 1 },
