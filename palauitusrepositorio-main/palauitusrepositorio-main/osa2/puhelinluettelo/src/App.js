@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import personService from './services/persons'
-import Persons from './components/Persons'
-import PersonForm from './components/PersonForm'
-import Filter from './components/Filter'
-import Notification from "./komponentit/Notification";
+import personService from './palvelut/persons'
+import Persons from './komponentit/Persons'
+import PersonForm from './komponentit/PersonForm'
+import Filter from './komponentit/Filter'
+//import Notification from "./komponentit/Notification";
 /*
 JM fullstackopen 2023 
 puhelinluettelo
