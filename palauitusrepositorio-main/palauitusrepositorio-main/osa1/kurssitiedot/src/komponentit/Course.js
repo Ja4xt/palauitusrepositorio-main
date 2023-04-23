@@ -19,7 +19,7 @@ const Total = ({ parts }) => {
   const total = parts.reduce( (s, p) => (s + p.exercises), 0)
   return (
     <div>
-      <b>total of {total} exercises</b>
+      <strong>total of {total} exercises</strong>
     </div>
   )
 }
@@ -39,9 +39,7 @@ const Content = ({ parts }) => {
 }
 
 const Part = ({ part }) => (
-  <p>
-    {part.name} {part.exercises}
-  </p>
+  <p>{part.name} {part.exercises}</p>
 )
 
 export default Course 
