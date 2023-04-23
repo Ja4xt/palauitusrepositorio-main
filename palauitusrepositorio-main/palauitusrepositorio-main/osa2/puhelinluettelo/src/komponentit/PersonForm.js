@@ -1,6 +1,8 @@
 /*
 JM fullstackopen 2023 
 */
+import React from 'react'
+
 const PersonForm = (props) => {
   return (
     <div>

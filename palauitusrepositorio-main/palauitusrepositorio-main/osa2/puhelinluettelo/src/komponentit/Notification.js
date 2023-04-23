@@ -1,14 +1,18 @@
 /*
 JM fullstackopen 2023 
 */
+import React from 'react'
+
 const Notification = ({ message }) => {
-    if (message === null) return null;
-  
-    if (message.includes("failed")) {
-      return <div className="error-message">{message}</div>;
+    if (message === null) {
+        return null
     }
-  
-    return <div className="success-message">{message}</div>;
-  };
-  
-  export default Notification;
+
+    return (
+        <div className={ message.type === "error" ? "error" : "notification" }>
+            { message.text }
+        </div>
+    )
+}
+
+export default Notification
