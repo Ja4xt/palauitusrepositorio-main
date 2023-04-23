@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Filter from "./components/Filter";
-import PersonForm from "./components/PersonForm";
-import Persons from "./components/Persons";
+import Filter from "./komponentit/Filter";
+import PersonForm from "./komponentit/PersonForm";
+import Persons from "./komponentit/Persons";
 import personService from "./services/persons";
-import Notification from "./components/Notification";
+import Notification from "./komponentit/Notification";
 
 /*
 JM fullstackopen 2023 

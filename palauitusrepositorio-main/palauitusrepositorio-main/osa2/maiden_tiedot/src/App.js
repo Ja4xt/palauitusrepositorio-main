@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Countries from "./components/Countries";
-import CountryData from "./components/CountryData";
+import Countries from "./komponentit/Countries";
+import CountryData from "./komponentit/CountryData";
 /*
 JM fullstackopen 2023 
 maat
