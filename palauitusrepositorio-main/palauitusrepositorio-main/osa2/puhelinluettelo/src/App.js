@@ -9,106 +9,150 @@ import Notification from "./komponentit/Notification";
 JM fullstackopen 2023 
 puhelinluettelo
 */
-
-const App = () => {
-  const [persons, setPersons] = useState([]);
-  const [newPerson, setNewPerson] = useState({ name: "", number: "" });
-  const [filter, setFilter] = useState("");
-  const [personsToShow, setPersonsToShow] = useState([]);
-  const [message, setMessage] = useState(null);
-
-  useEffect(() => {
-    personService.getAll().then((initialPersons) => {
-      setPersons(initialPersons);
-      setPersonsToShow(initialPersons);
-    });
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMessage(null);
-    }, 5000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [message]);
-
-  const addPerson = (event) => {
-    event.preventDefault();
-    const currentName = persons.filter(
-      (person) => person.name === newPerson.name
-    );
-
-    if (currentName.length === 0) {
+  const Notification = ({ message, className }) => {
+    if (message === null) {
+      return null
+    }
+  
+    return (
+      <div className={className}>{message}</div>
+    )
+  }
+  
+  const App = () => {
+    const [persons, setPersons] = useState([]);
+    const [newPerson, setNewPerson] = useState({ name: "", number: "" });
+    const [filter, setFilter] = useState("");
+    const [personsToShow, setPersonsToShow] = useState([]);
+    const [message, setMessage] = useState(null);
+    
+  
+    useEffect(() => {
       personService
-        .create(newPerson)
-        .then((returnedPerson) => {
-          setPersons(persons.concat(returnedPerson));
-          setPersonsToShow(persons.concat(returnedPerson));
-          setMessage(`Added ${newPerson.name} to phonebook`);
+        .getAll()
+        .then((response) => {
+          setPersons(response)
         })
-        .catch((error) => setMessage(error.response.data.error));
-    } else {
-      if (
-        window.confirm(
-          `${newPerson.name} is already added to phonebook, replace the old number with a new one?`
-        )
-      ) {
+    },[])
+  
+    const addPerson = (event) => {
+      event.preventDefault()
+  
+      const personObj = {
+        name: newName,
+        number: newNumber
+      }
+      let found = false
+      persons.forEach(person => {
+        if (person.name === newName) {
+          found = true
+          personObj.id = person.id
+        }
+      })
+  
+      if (found) {
+        if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+          personService
+            .update(personObj.id, personObj)
+            .then(response => {
+              setPersons(persons.map(person => 
+                person.id !== personObj.id ? person : personObj
+              ))
+              setNewName('')
+              setNewNumber('')
+              setMessage(`Number of ${personObj.name} is changed`)
+              setTimeout(() => {
+                setMessage(null)
+              }, 2000)
+            })
+            .catch(error => {
+              setMessage(`Person ${personObj.name} is not in phonebook`)
+              setPersons(persons.filter(person => person.id !== personObj.id))
+              setTimeout(() => {
+                setMessage(null)
+              }, 2000)
+            })
+        }
+        return
+      }
+  
+      personService
+        .create(personObj)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+          setMessage(`Person ${personObj.name} added`)
+          setTimeout(() => {
+            setMessage(null)
+          }, 2000)
+        })
+        .catch(error => {
+          setMessage(error.response.data.error)
+          setTimeout(() => {
+            setMessage(null)
+          }, 2000)
+        })
+    }
+  
+    const removePerson = (id) => {
+      if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
         personService
-          .update(currentName[0].id, newPerson)
-          .then((returnedPerson) => {
-            const updatedPersons = persons.map((person) =>
-              person.id !== returnedPerson.id ? person : returnedPerson
-            );
-            setPersons(updatedPersons);
-            setPersonsToShow(updatedPersons);
-            setMessage(`Updated ${newPerson.name}'s number`);
+          .remove(id)
+          .then(result => {
+            setPersons(persons.filter(person => {
+              if (person.id !== id) {
+                return true
+              }
+              setMessage(`Person ${person.name} is deleted`)
+              setTimeout(() => {
+                setMessage(null)
+              }, 2000)
+              return false
+            }))
           })
-          .catch((error) => setMessage(error.response.data.error));
       }
     }
-    setNewPerson({ name: "", number: "" });
-  };
-
-  const deletePerson = (id, name) => {
-    if (window.confirm(`Delete ${name}?`)) {
-      personService.remove(id).then((response) => {
-        const updatedPersons = persons.filter((person) => person.id !== id);
-        setPersons(updatedPersons);
-        setPersonsToShow(updatedPersons);
-        setMessage(`Removed ${name} from phonebook`);
-      });
+  
+    const showedPersons = persons.filter(person => 
+      person.name.toLowerCase().includes(searchName.toLowerCase()))
+  
+    const handleSearchName = (event) => {
+      setSearchName(event.target.value)
     }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setNewPerson({ ...newPerson, [name]: value });
-  };
-
-  const filterByName = (event) => {
-    const search = event.target.value;
-    setFilter(search);
-    setPersonsToShow(
-      persons.filter((person) => person.name.toLowerCase().includes(search))
-    );
-  };
-
-  return (
-    <div>
-      <h2>Phonebook</h2>
-      <Notification message={message} />
-      <Filter filter={filter} filterByName={filterByName} />
-      <h2>add a new</h2>
-      <PersonForm
-        addPerson={addPerson}
-        newPerson={newPerson}
-        handleChange={handleChange}
-      />
-      <h2>Numbers</h2>
-      <Persons personsToShow={personsToShow} deletePerson={deletePerson} />
-    </div>
-  );
-};
-
-export default App;
+  
+    const handleNameChange = (event) => {
+      setNewName(event.target.value)
+    }
+  
+    const handleNumberChange = (event) => {
+      setNewNumber(event.target.value)
+    }
+  
+    return (
+      <div>
+        <h1>Phonebook</h1>
+        <Notification 
+          message={message} 
+          className='success'
+        />
+        <Filter searchName={searchName} handleSearchName={handleSearchName} />
+        <h2>add a new</h2>
+        <PersonForm 
+          addPerson={addPerson}
+          newName={newName}
+          handleNameChange={handleNameChange}
+          newNumber={newNumber}
+          handleNumberChange={handleNumberChange}
+        />
+        <h2>Numbers</h2>
+        <Persons 
+          showedPersons={showedPersons}
+          remove={removePerson}
+        />
+      </div>
+    )
+  
+  }
+  
+  export default App
