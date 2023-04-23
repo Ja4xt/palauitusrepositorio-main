@@ -16,7 +16,7 @@ const Header = ({ name }) => (
 )
 
 const Total = ({ parts }) => {
-  const total = parts.reduce( (s, p) => (s + p.exercises), 0)
+  const total = parts.reduce( (a, b) => (a + b.exercises), 0)
   return (
     <div>
       <strong>total of {total} exercises</strong>
