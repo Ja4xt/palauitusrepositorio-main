@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Filter from "./komponentit/Filter";
 import PersonForm from "./komponentit/PersonForm";
 import Persons from "./komponentit/Persons";
-import personService from "./services/persons";
+import personService from "./palvelut/persons";
 import Notification from "./komponentit/Notification";
 
 /*
