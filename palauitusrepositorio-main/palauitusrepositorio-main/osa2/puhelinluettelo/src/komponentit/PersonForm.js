@@ -1,22 +1,26 @@
 /*
 JM fullstackopen 2023 
 */
-const PersonForm = ({ addPerson, newPerson, handleChange }) => {
-    return (
-      <form onSubmit={addPerson}>
+const PersonForm = (props) => {
+  return (
+    <div>
+      <form onSubmit={props.addPerson}>
         <div>
-          name:{" "}
-          <input name="name" value={newPerson.name} onChange={handleChange} />
+          name: <input
+            value={props.newName}
+            onChange={props.handleNameChange}
+          />
         </div>
         <div>
-          number:{" "}
-          <input name="number" value={newPerson.number} onChange={handleChange} />
+          number: <input 
+            value={props.newNumber}
+            onChange={props.handleNumberChange}
+          />
         </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
+        <div><button type="submit">add</button></div>
       </form>
-    );
-  };
-  
-  export default PersonForm;
+    </div>
+  )
+}
+
+export default PersonForm

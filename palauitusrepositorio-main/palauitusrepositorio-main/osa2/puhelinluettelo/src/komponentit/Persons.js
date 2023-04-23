@@ -1,19 +1,30 @@
 /*
 JM fullstackopen 2023 
 */
-const Persons = ({ personsToShow, deletePerson }) => {
-    return (
-      <div>
-        {personsToShow.map((person) => (
-          <div key={person.name}>
-            {person.name} {person.number}{" "}
-            <button onClick={() => deletePerson(person.id, person.name)}>
-              delete
-            </button>
-          </div>
-        ))}
-      </div>
-    );
-  };
-  
-  export default Persons;
+import React from 'react'
+
+const Person = ({ person, remove }) => {
+  return (
+    <p>
+      {person.name} {person.number} <button 
+        onClick={() => remove(person.id)}
+      >delete</button>
+    </p>
+  )
+}
+
+const Persons = ({ showedPersons, remove }) => {
+  return (
+    <div>
+      {showedPersons.map(person =>
+        <Person
+          key={person.name}
+          person={person} 
+          remove={remove}
+        />
+      )}
+    </div>
+  )
+}
+
+export default Persons

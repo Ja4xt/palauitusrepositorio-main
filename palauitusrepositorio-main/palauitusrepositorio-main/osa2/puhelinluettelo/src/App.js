@@ -3,7 +3,7 @@ import Filter from "./komponentit/Filter";
 import PersonForm from "./komponentit/PersonForm";
 import Persons from "./komponentit/Persons";
 import personService from "./palvelut/persons";
-import Notification from "./komponentit/Notification";
+//import Notification from "./komponentit/Notification";
 
 /*
 JM fullstackopen 2023 
@@ -20,12 +20,12 @@ puhelinluettelo
   }
   
   const App = () => {
-    const [persons, setPersons] = useState([]);
-    const [newPerson, setNewPerson] = useState({ name: "", number: "" });
-    const [filter, setFilter] = useState("");
-    const [personsToShow, setPersonsToShow] = useState([]);
-    const [message, setMessage] = useState(null);
-    
+    const [persons, setPersons] = useState([])
+    const [ newName, setNewName ] = useState('')
+    const [ newNumber, setNewNumber ] = useState('')
+    const [ searchName, setSearchName ] = useState('')
+    const [ message, setMessage ] = useState(null)
+
   
     useEffect(() => {
       personService
@@ -155,4 +155,4 @@ puhelinluettelo
   
   }
   
-  export default App
+  export default App;
