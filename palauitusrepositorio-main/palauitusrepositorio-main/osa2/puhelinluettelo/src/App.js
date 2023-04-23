@@ -3,7 +3,6 @@ import personService from './palvelut/persons'
 import Persons from './komponentit/Persons'
 import PersonForm from './komponentit/PersonForm'
 import Filter from './komponentit/Filter'
-//import Notification from "./komponentit/Notification";
 /*
 JM fullstackopen 2023 
 puhelinluettelo
