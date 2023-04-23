@@ -99,6 +99,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <Notification message={message} />
       <Filter filter={filter} filterByName={filterByName} />
+      <h2>add a new</h2>
       <PersonForm
         addPerson={addPerson}
         newPerson={newPerson}
