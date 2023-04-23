@@ -6,6 +6,8 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:3001/persons'
 //const baseUrl = '/api/persons'
 
+// npx json-server --watch db.json --port 3001
+
 const getAll = () => {
   const request = axios.get(baseUrl)
   return request.then(response =>response.data)
