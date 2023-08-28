@@ -37,11 +37,9 @@ const StatisticLine = ({ text, value }) => (
   </tr>
 );
 
-// Pyöristys
 const roundToTwo = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
 const App = () => {
-  // Klikkien tallennus
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
