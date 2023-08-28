@@ -32,19 +32,19 @@ const App = () => {
 
   return (
     <div>
-      <h1>Päivän anekdootti</h1>
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
-      <div>on {points[selected]} pistetta</div>
-      <Button handleClick={() => addVote()} text="Äänesta" />
+      <div>has {points[selected]} votes</div>
+      <Button handleClick={() => addVote()} text="vote" />
       <Button
         handleClick={() =>
           setSelected(Math.floor(Math.random() * anecdotes.length))
         }
-        text="seuraava anekdootti"
+        text="next anecdote"
       />
-      <h1>Anekdootti jolla eniten äänia</h1>
+      <h1>Anecdote with most votes</h1>
       <div>{anecdotes[bestAnecdoteIndex]}</div>
-      <div>on {points[bestAnecdoteIndex]} äänta</div>
+      <div>has {points[bestAnecdoteIndex]} votes</div>
     </div>
   );
 };

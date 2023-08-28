@@ -37,11 +37,11 @@ const StatisticLine = ({ text, value }) => (
   </tr>
 );
 
-// Round to two decimal places
+// Pyöristys
 const roundToTwo = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
 const App = () => {
-  // Save clicks of each button to its own state
+  // Klikkien tallennus
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
