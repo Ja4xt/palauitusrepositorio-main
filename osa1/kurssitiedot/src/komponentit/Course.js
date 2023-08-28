@@ -1,8 +1,5 @@
 import React from 'react'
-/*
-JM fullstackopen 2023 
-kurssit
-*/
+
 const Course = ({ course }) => (
   <div>
     {course.name && <Header name={course.name} />}
