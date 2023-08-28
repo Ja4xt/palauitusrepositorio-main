@@ -1,4 +1,4 @@
-.error {
+.error, .error.response.data.error {
   color: red;
   background: lightgrey;
   font-size: 20px;

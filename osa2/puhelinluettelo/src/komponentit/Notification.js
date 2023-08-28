@@ -7,7 +7,7 @@ const Notification = ({ message }) => {
 
     return (
         <div className={ message.type === "error" ? "error" : "notification" }>
-            { message.text }
+            { message.text } 
         </div>
     )
 }
