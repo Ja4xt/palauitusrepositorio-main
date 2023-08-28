@@ -1,7 +1,3 @@
-/*
-JM fullstackopen 2023 
-henkilöt pull
-*/
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/persons'
 //const baseUrl = '/api/persons'

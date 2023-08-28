@@ -1,6 +1,3 @@
-/*
-JM fullstackopen 2023 
-*/
 import React from 'react'
 
 const Person = ({ person, remove }) => {
