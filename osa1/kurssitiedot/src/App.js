@@ -1,8 +1,5 @@
 import React from 'react'
-/*
-JM fullstackopen 2023 
-kurristiedot
-*/
+
 import Course from './komponentit/Course'
 
 const App = () => {

@@ -3,10 +3,7 @@ import personService from './palvelut/persons'
 import Persons from './komponentit/Persons'
 import PersonForm from './komponentit/PersonForm'
 import Filter from './komponentit/Filter'
-/*
-JM fullstackopen 2023 
-puhelinluettelo
-*/
+
 const Notification = ({ message, className }) => {
   if (message === null) {
     return null

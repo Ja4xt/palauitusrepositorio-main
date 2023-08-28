@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Countries from "./komponentit/Countries";
 import CountryData from "./komponentit/CountryData";
-/*
-JM fullstackopen 2023 
-maat
-*/
+
 const App = () => {
   const [query, setQuery] = useState("");
   const [countries, setCountries] = useState([]);
