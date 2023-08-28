@@ -13,14 +13,23 @@ const Notification = ({ message, className }) => {
     <div className={className}>{message}</div>
   )
 }
+const Errornoti = ({ errormessage, className }) => {
+  if (errormessage === null) {
+    return null
+    }
+
+  return (
+    <div className={className}>{errormessage}</div>
+  )
+}
 
 const App = () => {
-  const [persons, setPersons] = useState([])
+  const [ persons, setPersons] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('')
   const [ message, setMessage ] = useState(null)
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [ errormessage, seterrorMessage ] = useState(null)
 
   useEffect(() => {
     personService
@@ -61,7 +70,7 @@ const App = () => {
             }, 2000)
           })
           .catch(error => {
-            setMessage(`Person ${personObj.name} is not in phonebook`)
+            seterrorMessage(`Person ${personObj.name} is not in phonebook`)
             setPersons(persons.filter(person => person.id !== personObj.id))
             setTimeout(() => {
               setMessage(null)
@@ -83,7 +92,7 @@ const App = () => {
         }, 2000)
       })
       .catch(error => {
-        setMessage(error.response.data.error)
+        seterrorMessage(error.response.data.error)
         setTimeout(() => {
           setMessage(null)
         }, 2000)
@@ -99,10 +108,11 @@ const App = () => {
             if (person.id !== id) {
               return true
             }
-            setMessage(`Person ${person.name} is deleted`)
+            seterrorMessage(`Person ${person.name} is deleted`)
             setTimeout(() => {
               setMessage(null)
             }, 2000)
+            
             return false
           }))
         })
@@ -130,6 +140,10 @@ const App = () => {
       <Notification 
         message={message} 
         className='success'
+      />
+      <Errornoti
+        errormessage={errormessage} 
+        className='error'
       />
       <Filter searchName={searchName} handleSearchName={handleSearchName} />
       <h2>add a new</h2>
