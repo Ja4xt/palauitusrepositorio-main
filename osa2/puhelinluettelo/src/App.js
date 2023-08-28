@@ -20,6 +20,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('')
   const [ message, setMessage ] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
 
   useEffect(() => {
     personService
