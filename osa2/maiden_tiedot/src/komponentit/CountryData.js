@@ -1,8 +1,5 @@
 import WeatherData from "./WeatherData";
-/*
-JM fullstackopen 2023 
-maat tiedot
-*/
+
 const CountryData = ({ country }) => {
   return (
     <div>

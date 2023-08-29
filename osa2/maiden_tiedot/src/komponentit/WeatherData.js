@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-/*
-JM fullstackopen 2023 
-maat saa
-*/
+
 const WeatherData = ({ city }) => {
   const OPENWEATHER_API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
   const [weather, setWeather] = useState([]);
