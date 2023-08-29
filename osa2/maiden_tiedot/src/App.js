@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Countries from "./komponentit/Countries";
 import CountryData from "./komponentit/CountryData";
+import WeatherData from "./komponentit/WeatherData";
 
 const App = () => {
   const [query, setQuery] = useState("");
   const [countries, setCountries] = useState([]);
   const [countriesToShow, setCountriesToShow] = useState([]);
+  const [weather, setWeather] = useState([]);
 
   useEffect(() => {
-    axios.get("https://restcountries.com/v3.1/all").then((response) => {
+      axios.get("https://studies.cs.helsinki.fi/restcountries/api/all").then((response) => {
       setCountries(response.data);
     });
   }, []);
@@ -39,8 +41,11 @@ const App = () => {
           countriesToShow={countriesToShow}
           setCountriesToShow={setCountriesToShow}
         />
+        
       )}
+
     </div>
+    
   );
 };
 
