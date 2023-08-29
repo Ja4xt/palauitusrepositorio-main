@@ -92,45 +92,26 @@ const App = () => {
         }, 2000)
       })
       .catch(error => {
-        seterrorMessage(error.response.data.error)
+        seterrorMessage(`unknown ${personObj.name} error`)
         setTimeout(() => {
           setMessage(null)
         }, 2000)
       })
   }
-/*  const removePerson = (id) => {
-    if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
-      personService
-        .remove(id)
-        .then(result => {
-          setPersons(persons.filter(person => {
-            if (person.id !== id) {
-             // return true
-             return person
-            }
-            seterrorMessage(`Person ${person.name} is deleted`)
-            setTimeout(() => {
-              seterrorMessage(null)
-            }, 2000)
-            return false
-          }))
-        })
-    }
-  }*/
-
+  /*
   const removePerson = (id) => {
     if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
       personService
       .remove(id)
       .then(result => {
         setPersons(persons.filter(person => person.id !== id))
-            setMessage(`Person ${id.name} is deleted`)
+            setMessage(`Person ${person.name} is deleted`)
             setTimeout(() => {
               setMessage(null)
             }, 2000)
           })
           .catch(error => {
-            seterrorMessage(`Person ${id.name} is not in phonebook`)
+            seterrorMessage(`Person ${person.name} is not in phonebook`)
             setPersons(persons.filter(person => person.id !== person.id))
             setTimeout(() => {
               setMessage(null)
@@ -139,6 +120,29 @@ const App = () => {
       }
       return
     }
+*/
+const removePerson = (id) => {
+  const personToDelete = persons.find(p => p.id === id);
+
+  if (window.confirm(`Delete ${personToDelete.name}?`)) {
+    personService
+      .remove(id)
+      .then(result => {
+        setPersons(persons.filter(person => person.id !== id));
+        setMessage(`Person ${personToDelete.name} is deleted`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 2000);
+      })
+      .catch(error => {
+        seterrorMessage(`Person ${personToDelete.name} was already deleted from phonebook`);
+        setPersons(persons.filter(person => person.id !== id));
+        setTimeout(() => {
+          seterrorMessage(null);
+        }, 2000);
+      });
+  }
+};
 
   const showedPersons = persons.filter(person => 
     person.name.toLowerCase().includes(searchName.toLowerCase()))
