@@ -98,26 +98,47 @@ const App = () => {
         }, 2000)
       })
   }
-
-  const removePerson = (id) => {
+/*  const removePerson = (id) => {
     if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
       personService
         .remove(id)
         .then(result => {
           setPersons(persons.filter(person => {
             if (person.id !== id) {
-              return true
+             // return true
+             return person
             }
             seterrorMessage(`Person ${person.name} is deleted`)
             setTimeout(() => {
-              setMessage(null)
+              seterrorMessage(null)
             }, 2000)
-            
             return false
           }))
         })
     }
-  }
+  }*/
+
+  const removePerson = (id) => {
+    if (window.confirm(`Delete ${persons.find(p => p.id === id).name}?`)) {
+      personService
+      .remove(id)
+      .then(result => {
+        setPersons(persons.filter(person => person.id !== id))
+            setMessage(`Person ${id.name} is deleted`)
+            setTimeout(() => {
+              setMessage(null)
+            }, 2000)
+          })
+          .catch(error => {
+            seterrorMessage(`Person ${id.name} is not in phonebook`)
+            setPersons(persons.filter(person => person.id !== person.id))
+            setTimeout(() => {
+              setMessage(null)
+            }, 2000)
+          })
+      }
+      return
+    }
 
   const showedPersons = persons.filter(person => 
     person.name.toLowerCase().includes(searchName.toLowerCase()))
