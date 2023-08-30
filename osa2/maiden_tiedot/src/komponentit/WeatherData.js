@@ -42,8 +42,8 @@ export default WeatherData;*/
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-const API_KEY = `${process.env.REACT_APP_API_KEY}`
+//`${process.env}`
+const api_key = process.env_API_KEY
 const WeatherData = ({ city }) => {
   const [weather, setWeather] = useState(null);
 
@@ -51,7 +51,7 @@ const WeatherData = ({ city }) => {
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api_key}`
       )
       .then((response) => {
         setWeather(response.data);
