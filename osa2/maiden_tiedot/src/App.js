@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Countries from "./komponentit/Countries";
 import CountryData from "./komponentit/CountryData";
-import WeatherData from "./komponentit/WeatherData";
+//import WeatherData from "./komponentit/WeatherData";
+//require('dotenv').config()
 
 const App = () => {
   const [query, setQuery] = useState("");

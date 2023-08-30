@@ -40,18 +40,18 @@ const WeatherData = ({ city }) => {
 
 export default WeatherData;*/
 
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import axios from "axios";
 //`${process.env}`
-const api_key = process.env_API_KEY
 const WeatherData = ({ city }) => {
+  const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+  const API_KEY = process.env.OPENWEATHERMAP_API;
+  console.log("api", API_KEY)
   const [weather, setWeather] = useState(null);
-
-  console.log("API", API_KEY)
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${api_key}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       )
       .then((response) => {
         setWeather(response.data);
@@ -60,6 +60,45 @@ const WeatherData = ({ city }) => {
         console.error("Error fetching weather data:", error);
       });
   }, [city]);
+
+  if (!weather) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h2>Weather in {city}</h2>
+      <div>Temperature {weather.main.temp}°C</div>
+      <img
+        alt="weather icon"
+        src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+      />
+      <div>Wind {weather.wind.speed} m/s</div>
+    </div>
+  );
+};
+
+export default WeatherData;
+*/
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const WeatherData = ({ city }) => {
+  const [weather, setWeather] = useState(null);
+  const apiKey = process.env.REACT_APP_API_KEY; // Correct way to access environment variable
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+      )
+      .then((response) => {
+        setWeather(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching weather data:", error);
+      });
+  }, [city, apiKey]); // Include apiKey in the dependency array
 
   if (!weather) {
     return null;
