@@ -1,15 +1,18 @@
 {
-    "name": "backend",
-    "version": "0.0.1",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Jan Mattila",
-    "license": "MIT",
-    "dependencies": {
-        "express": "^4.18.2"
-    }
+  "name": "osa3",
+  "version": "0.0.1",
+  "description": "osa3 backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Mattila",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
